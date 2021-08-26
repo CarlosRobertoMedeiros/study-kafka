@@ -18,8 +18,9 @@
 	- Creating a Producer
 	- Creating a Consumer
 		Using GroupId
-	- Implementing Several Producers and Consumer
+	- Implementing Producer and Several Consumers
 	- Implementing Parallel Stream
+	
 	
 	
 	
