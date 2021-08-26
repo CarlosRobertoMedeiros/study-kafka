@@ -3,6 +3,7 @@
 ![GitHub top language](https://img.shields.io/github/languages/top/CarlosRobertoMedeiros/Backend-Java-red)
 ### Kafka top broker - Study
 
+![alt text](https://www.adviseu.com.br/wp-content/uploads/2020/10/1-apache-kafka-ecosystem.jpgg)
 ## Project Arch
 	- First Project with Kafka
 	
@@ -12,6 +13,16 @@
 
 ### Tools and Technologies Used ###
 	- Java and Kafka
+	
+### Skills ###	
+	- Creating a Producer
+	- Creating a Consumer
+		Using GroupId
+	- Implementing Several Producers and Consumer
+	- Implementing Parallel Stream
+	
+	
+	
 	
 
 		

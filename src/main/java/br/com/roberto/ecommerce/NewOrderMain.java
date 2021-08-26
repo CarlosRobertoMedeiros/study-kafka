@@ -3,6 +3,7 @@ package br.com.roberto.ecommerce;
 import java.util.Properties;
 import java.util.concurrent.ExecutionException;
 
+import org.apache.kafka.clients.producer.Callback;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.clients.producer.ProducerRecord;
@@ -15,7 +16,8 @@ public class NewOrderMain {
 		var producer = new KafkaProducer<String, String>(properties());
 		var value = "132123,67523,789456";
 		var record = new ProducerRecord<>("ECOMMERCE_NEW_ORDER", value, value);
-		producer.send(record, (data, ex) ->{
+		
+		Callback callback = (data, ex) ->{
 			if(ex !=null) {
 				throw new RuntimeException(ex.getCause() +" - " +  ex.getMessage());
 			}
@@ -24,7 +26,15 @@ public class NewOrderMain {
 							   data.offset()+":::: timestamp "+
 							   data.timestamp());
 			
-		}).get(); //Future
+		};
+		producer.send(record, callback).get(); //Future
+		
+		//Envia um novo dado
+		
+		var email = "Welcome! We are processing your order !";
+		var emailRecord = new ProducerRecord<>("ECOMMERCE_SEND_EMAIL", email, email);
+		producer.send(emailRecord,callback).get();
+		
 
 	}
 
