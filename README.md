@@ -20,6 +20,8 @@
 		Using GroupId
 	- Implementing Producer and Several Consumers
 	- Implementing Parallel Stream
+	- Implementing Object Serialization
+	- Implementing Object Deserialization
 	
 	
 	
