@@ -5,6 +5,7 @@
 
 	<groupId>br.com.roberto</groupId>
 	<artifactId>ecommerce-kafka</artifactId>
+	<packaging>pom</packaging>
 	<version>0.0.1-SNAPSHOT</version>
 
 	<build>
@@ -44,4 +45,11 @@
 		</dependency>
 		
 	</dependencies>
+	<modules>
+		<module>common-kafka</module>
+		<module>service-email</module>
+		<module>service-fraude-detector</module>
+		<module>service-log</module>
+		<module>service-new-order</module>
+	</modules>
 </project>

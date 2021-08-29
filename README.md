@@ -23,6 +23,11 @@
 	- Implementing Object Serialization
 	- Implementing Object Deserialization
 	
+	Fast Delegate
+		
+	
+	
+	
 	
 	
 	
