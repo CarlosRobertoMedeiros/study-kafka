@@ -33,3 +33,5 @@ public class LogService {
 	}
 												
 }
+
+//Continuar Daqui = Kafka- Aula 1 - Atividade 3 Um serviço que acessa bancos externos
