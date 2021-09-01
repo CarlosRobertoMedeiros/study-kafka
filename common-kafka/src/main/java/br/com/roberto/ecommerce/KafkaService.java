@@ -42,15 +42,12 @@ class KafkaService<T> implements Closeable {
 				for (var record : records) {
 					try {
 						parse.consume(record);
-					} catch (ExecutionException e) {
+					} catch (Exception e) {
+						// only catches exception because no matter which Exception recover and parse
 						// Just logging the exception for this message
 						e.printStackTrace();
-					} catch (InterruptedException e) {
-						// Just logging the exception for this message
-						
-						e.printStackTrace();
-					} 
-					
+					}
+
 				}
 			}
 		}

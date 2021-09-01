@@ -10,21 +10,23 @@ public class NewOrderMain {
 
 		try(var orderDispatcher = new KafkaDispatcher<Order>()){
 			try(var emailDispatcher = new KafkaDispatcher<String>()){
-			
+				
+				var email = Math.random() + "@email.com";
 				for (int i=0; i<=10;i++) {
 				
-					var userId = UUID.randomUUID().toString();
 					var orderId = UUID.randomUUID().toString();
 					var amount = new BigDecimal(Math.random() * 5000 + 1);
-					var order =  new Order(userId, orderId, amount);
+					var order =  new Order(orderId, amount, email);
 									
-					orderDispatcher.send("ECOMMERCE_NEW_ORDER", userId , order);
+					orderDispatcher.send("ECOMMERCE_NEW_ORDER", email , order);
 					
-					var email="Obrigado por sua ordem ! Iremos processar !";
-					emailDispatcher.send("ECOMMERCE_SEND_EMAIL", userId , email);
+					var emailCode="Obrigado por sua ordem ! Iremos processar !";
+					emailDispatcher.send("ECOMMERCE_SEND_EMAIL", email , emailCode);
 				}
 			}
 		}
 
 	}
 }
+
+// Continuar daqui E:\Estudos\Video Aulas\Desenvolvimento\Alura\Kafka\02 - Fast delegate, evolução e cluster de broker\03 - Servidor HTTP
