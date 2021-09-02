@@ -52,5 +52,6 @@
 		<module>service-log</module>
 		<module>service-new-order</module>
 		<module>service-users</module>
+		<module>service-http-ecommerce</module>
 	</modules>
 </project>
