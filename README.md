@@ -26,6 +26,7 @@
 	- Created 7 Services for test using the our comom-kafka 
 	- Implementing Broker cluster
 		The number of consumers equals the number of partitions
+	- Segregated Consumers
 	
 		
 	
