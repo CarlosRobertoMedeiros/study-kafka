@@ -53,5 +53,6 @@
 		<module>service-new-order</module>
 		<module>service-users</module>
 		<module>service-http-ecommerce</module>
+		<module>service-reading-report</module>
 	</modules>
 </project>
