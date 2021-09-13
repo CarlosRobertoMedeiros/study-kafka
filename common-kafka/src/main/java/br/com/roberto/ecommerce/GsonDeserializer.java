@@ -1,33 +1,17 @@
 package br.com.roberto.ecommerce;
 
-import java.util.Map;
-
 import org.apache.kafka.common.serialization.Deserializer;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-public class GsonDeserializer<T> implements Deserializer<T> {
+public class GsonDeserializer<T> implements Deserializer<Message> {
 
-	public static String TYPE_CONFIG = "br.com.roberto.ecommerce.type_config";
-	private final Gson gson = new GsonBuilder().create();
-	private Class<T> type;
+	private final Gson gson = new GsonBuilder().registerTypeAdapter(Message.class, new MessageAdapter()).create();
 
 	@Override
-	public void configure(Map<String, ?> configs, boolean isKey) {
-		String typeName = String.valueOf(configs.get(TYPE_CONFIG).toString());
-
-		try {
-			this.type = (Class<T>) Class.forName(typeName);
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Type for deserialization does not exist in the classpath " + e);
-		}
-
-	}
-
-	@Override
-	public T deserialize(String s, byte[] bytes) {
-		return gson.fromJson(new String(bytes), type);
+	public Message deserialize(String s, byte[] bytes) {
+		return gson.fromJson(new String(bytes), Message.class);
 	}
 
 }

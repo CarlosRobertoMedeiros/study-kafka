@@ -44,15 +44,17 @@ public class BatchSendMessageService {
 
 	private final KafkaDispatcher<User> userDispatcher = new KafkaDispatcher<>();
 	
-	private void parse(ConsumerRecord<String, String> record) throws InterruptedException, ExecutionException, SQLException {
+	private void parse(ConsumerRecord<String, Message<String>> record) throws InterruptedException, ExecutionException, SQLException {
 
 		System.out.println("---------------------------------------------");
 		System.out.println("Processando um novo Batch");
-		System.out.println("Topic: "+ record.value());
+		
+		var message = record.value();
+		System.out.println("Topic: "+ message.getPayLoad());
 
 		
 		for (User user : getAllUsers()) {
-			userDispatcher.send(record.value(), user.getUuid(), user);
+			userDispatcher.send(message.getPayLoad(), user.getUuid(), user);
 		}
 		
 	}
@@ -61,7 +63,7 @@ public class BatchSendMessageService {
 		var results = connection.prepareStatement("select uuid from Users").executeQuery();
 		List<User> users = new ArrayList<>();
 		while (results.next()){
-			users.add(new User(results.getString("1")));
+			users.add(new User(results.getString("uuid")));
 		}
 		
 		return users;

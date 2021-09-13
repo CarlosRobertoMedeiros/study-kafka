@@ -19,13 +19,14 @@ public class ReadingReportService {
 		}
 	}
 
-	private void parse(ConsumerRecord<String, User> record)
+	private void parse(ConsumerRecord<String, Message<User>> record)
 			throws IOException {
 
 		System.out.println("---------------------------------------------");
 		System.out.println("Processando relatório para " + record.value());
 
-		var user = record.value();
+		var message = record.value();
+		var user = message.getPayLoad();
 		var target = new File(user.getReportPath());
 		IO.copyTo(SOURCE, target);
 		IO.append(target, "Created for " + user.getUuid());

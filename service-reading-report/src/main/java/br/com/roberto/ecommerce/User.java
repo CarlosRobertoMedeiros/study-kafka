@@ -12,9 +12,14 @@ public class User {
 	public String getReportPath() {
 		return "target/" + uuid + "-report.txt";
 	}
-	
+
 	public String getUuid() {
 		return uuid;
+	}
+
+	@Override
+	public String toString() {
+		return "User [uuid=" + uuid + "]";
 	}
 
 }
