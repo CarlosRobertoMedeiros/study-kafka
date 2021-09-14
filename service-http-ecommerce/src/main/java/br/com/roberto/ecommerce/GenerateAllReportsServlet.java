@@ -1,11 +1,7 @@
 package br.com.roberto.ecommerce;
 
 import java.io.IOException;
-import java.math.BigDecimal;
-import java.util.UUID;
 import java.util.concurrent.ExecutionException;
-
-import org.eclipse.jetty.servlet.Source;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -25,8 +21,8 @@ public class GenerateAllReportsServlet extends HttpServlet {
 
 	@Override
 	public void destroy() {
-		batchDispatcher.close();
 		super.destroy();
+		batchDispatcher.close();
 	}
 
 	@Override
@@ -34,10 +30,11 @@ public class GenerateAllReportsServlet extends HttpServlet {
 
 		try {
 			
-			batchDispatcher.send("SEND_MESSAGE_TO_ALL_USERS","USER_GENERATE_READING_REPORT","USER_GENERATE_READING_REPORT");
+			batchDispatcher.send("ECOMMERCE_SEND_MESSAGE_TO_ALL_USERS",
+								"ECOMMERCE_USER_GENERATE_READING_REPORT",
+								new CorrelationId(GenerateAllReportsServlet.class.getSimpleName()),
+								"ECOMMERCE_USER_GENERATE_READING_REPORT");
 			
-			
-
 			System.out.println("Enviando relatório gerado para todos usuários");
 			resp.setStatus(HttpServletResponse.SC_OK);
 			resp.getWriter().println("Requisição de Relatórios gerados");

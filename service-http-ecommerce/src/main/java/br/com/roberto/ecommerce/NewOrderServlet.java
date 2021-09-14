@@ -42,10 +42,10 @@ public class NewOrderServlet extends HttpServlet {
 			var orderId = UUID.randomUUID().toString();
 			var order = new Order(orderId, amount, email);
 
-			orderDispatcher.send("ECOMMERCE_NEW_ORDER", email, order);
+			orderDispatcher.send("ECOMMERCE_NEW_ORDER", email, new CorrelationId(NewOrderServlet.class.getSimpleName()), order);
 
 			var emailCode = "Obrigado por sua ordem ! Iremos processar !";
-			emailDispatcher.send("ECOMMERCE_SEND_EMAIL", email, emailCode);
+			emailDispatcher.send("ECOMMERCE_SEND_EMAIL", email, new CorrelationId(NewOrderServlet.class.getSimpleName()), emailCode);
 
 			System.out.println("New Order sent successfully.");
 

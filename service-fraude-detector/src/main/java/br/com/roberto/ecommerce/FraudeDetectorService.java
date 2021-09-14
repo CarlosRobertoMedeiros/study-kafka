@@ -21,7 +21,7 @@ public class FraudeDetectorService {
 	
 	private final KafkaDispatcher<Order> orderDispatcher = new KafkaDispatcher<>();
 
-	private void parse(ConsumerRecord<String, Order> record) throws InterruptedException, ExecutionException {
+	private void parse(ConsumerRecord<String, Message<Order>> record) throws InterruptedException, ExecutionException {
 
 		System.out.println("---------------------------------------------");
 		System.out.println("Processando a nova Ordem, checando fraudes");
@@ -30,6 +30,7 @@ public class FraudeDetectorService {
 		System.out.println(record.partition());
 		System.out.println(record.offset());
 
+		var message = record.value();
 		try {
 			Thread.sleep(5000);
 		} catch (InterruptedException e) {
@@ -37,15 +38,17 @@ public class FraudeDetectorService {
 			e.printStackTrace();
 		}
 		
-		var order = record.value();
+		var order = message.getPayLoad();
 		
 		if (isFraude(order)) {
 			//Simulate The fraud happens when the amount is >=4500
 			System.out.println("Order is a Fraud "+order);
-			orderDispatcher.send("ECOMMERCE_ORDER_REJECTED", order.getEmail(), order);
+			orderDispatcher.send("ECOMMERCE_ORDER_REJECTED", order.getEmail(),
+					message.getId().continueWith(FraudeDetectorService.class.getSimpleName()), order);
 		}else {
 			System.out.println("Approved: "+order);
-			orderDispatcher.send("ECOMMERCE_ORDER_APPROVED", order.getEmail(), order);
+			orderDispatcher.send("ECOMMERCE_ORDER_APPROVED", order.getEmail(),
+					message.getId().continueWith(FraudeDetectorService.class.getSimpleName()), order);
 		}
 		
 	}
