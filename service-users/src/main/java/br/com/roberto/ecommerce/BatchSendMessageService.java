@@ -30,12 +30,11 @@ public class BatchSendMessageService {
 		
 	}
 	
-	public static void main(String[] args) throws SQLException {
+	public static void main(String[] args) throws SQLException, ExecutionException, InterruptedException {
 		var batchService = new BatchSendMessageService();
 		try(var service = new KafkaService<>(BatchSendMessageService.class.getSimpleName(),
-									 "ECOMMERCE_SEND_MESSAGE_TO_ALL_USERS", 
+									"ECOMMERCE_SEND_MESSAGE_TO_ALL_USERS",
 									 batchService::parse, 
-									 String.class,
 									 Map.of())){
 			service.run();
 		}
@@ -54,10 +53,12 @@ public class BatchSendMessageService {
 
 		
 		for (User user : getAllUsers()) {
-			userDispatcher.send(message.getPayLoad(), 
+			userDispatcher.sendAsync(message.getPayLoad(), 
 					user.getUuid(),
 					message.getId().continueWith(BatchSendMessageService.class.getSimpleName()), 
 					user);
+			//Cuidado ao perder o tópico caso exista uma perda de servidor 
+			System.out.println("Acho que enviei devido ser async para "+user);
 		}
 		
 	}

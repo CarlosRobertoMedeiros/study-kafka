@@ -8,12 +8,11 @@ import org.apache.kafka.clients.consumer.ConsumerRecord;
 
 public class FraudeDetectorService {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ExecutionException, InterruptedException {
 		var fraudeDetectorService = new FraudeDetectorService();
 		try(var service = new KafkaService<Order>(FraudeDetectorService.class.getSimpleName(),
 									 "ECOMMERCE_NEW_ORDER", 
 									 fraudeDetectorService::parse, 
-									 Order.class,
 									 Map.of())){
 			service.run();
 		}

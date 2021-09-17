@@ -1,7 +1,6 @@
 package br.com.roberto.ecommerce;
 
 import java.io.IOException;
-import java.lang.reflect.UndeclaredThrowableException;
 import java.math.BigDecimal;
 import java.util.UUID;
 import java.util.concurrent.ExecutionException;
