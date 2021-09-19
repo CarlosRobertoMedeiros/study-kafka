@@ -6,6 +6,9 @@ import java.util.concurrent.ExecutionException;
 
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 
+import br.com.roberto.ecommerce.consumer.KafkaService;
+import br.com.roberto.ecommerce.dispatcher.KafkaDispatcher;
+
 public class FraudeDetectorService {
 
 	public static void main(String[] args) throws ExecutionException, InterruptedException {

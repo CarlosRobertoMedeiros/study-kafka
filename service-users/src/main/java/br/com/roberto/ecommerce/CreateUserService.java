@@ -9,6 +9,8 @@ import java.util.concurrent.ExecutionException;
 
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 
+import br.com.roberto.ecommerce.consumer.KafkaService;
+
 public class CreateUserService {
 	
 	private Connection connection;

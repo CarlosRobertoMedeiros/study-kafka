@@ -3,6 +3,7 @@ package br.com.roberto.ecommerce;
 import java.io.IOException;
 import java.util.concurrent.ExecutionException;
 
+import br.com.roberto.ecommerce.dispatcher.KafkaDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;

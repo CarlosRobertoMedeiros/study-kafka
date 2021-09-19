@@ -10,6 +10,9 @@ import java.util.concurrent.ExecutionException;
 
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 
+import br.com.roberto.ecommerce.consumer.KafkaService;
+import br.com.roberto.ecommerce.dispatcher.KafkaDispatcher;
+
 public class BatchSendMessageService {
 
 	private Connection connection;
