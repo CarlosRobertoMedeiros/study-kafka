@@ -68,8 +68,12 @@ public class KafkaService<T> implements Closeable {
 		properties.setProperty(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, GsonDeserializer.class.getName());
 		properties.setProperty(ConsumerConfig.GROUP_ID_CONFIG, groupId);
 		properties.setProperty(ConsumerConfig.CLIENT_ID_CONFIG, UUID.randomUUID().toString());
-		properties.setProperty(ConsumerConfig.MAX_POLL_RECORDS_CONFIG, "1"); // Avanço de 1 em 1 no Broker evitando
-																				// quebras
+		properties.setProperty(ConsumerConfig.MAX_POLL_RECORDS_CONFIG, "1"); // Avanço de 1 em 1 no Broker evitando quebras
+		properties.setProperty(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "latest");//Ir para o maior, caso não tenha informação de offSet earliest é outro arguimento desde o início do dado no disco **Versão antiga da api do kafka
+		
+		//properties.setProperty(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "largest");//Ir para o maior, caso não tenha informação de offSet smallest é outro arguimento desde o início do dado no disco
+		
+		
 		properties.putAll(overrideProperties);
 		return properties;
 	}

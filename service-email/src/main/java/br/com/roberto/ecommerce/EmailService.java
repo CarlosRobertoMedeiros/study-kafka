@@ -10,7 +10,7 @@ import br.com.roberto.ecommerce.consumer.ServiceRunner;
 public class EmailService implements ConsumerService<String> {
 
 	public static void main(String[] args) throws ExecutionException, InterruptedException {
-		new ServiceRunner(EmailService::new).start(5);
+		new ServiceRunner(EmailService::new).start(4);
 	}
 	
 	public String getConsumerGroup() {
