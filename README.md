@@ -23,10 +23,17 @@
 	- Implementing Object Serialization
 	- Implementing Object Deserialization
 	
-	- Created 7 Services for test using the our comom-kafka 
+	- Created 10 Services for test using the our common-kafka and common-database
 	- Implementing Broker cluster
 		The number of consumers equals the number of partitions
-	- Segregated Consumers
+	- Implementing Fast Delegate
+	- Implementing Correlation Ids
+	- Implementing Dead Letters
+	- Using indepotency
+	
+	
+	
+	
 	
 		
 	

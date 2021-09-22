@@ -5,22 +5,17 @@
     <artifactId>ecommerce-kafka</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
-  <artifactId>service-users</artifactId>
+  <artifactId>common-database</artifactId>
   
   <dependencies>
-
+  	
+	<!-- https://mvnrepository.com/artifact/org.xerial/sqlite-jdbc -->
 	<dependency>
-		<groupId>br.com.roberto</groupId>
-		<artifactId>common-kafka</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
+	    <groupId>org.xerial</groupId>
+	    <artifactId>sqlite-jdbc</artifactId>
+	    <version>3.36.0.1</version>
 	</dependency>
-	
-	<dependency>
-	    <groupId>br.com.roberto</groupId>
-  		<artifactId>common-database</artifactId>  
-    	<version>0.0.1-SNAPSHOT</version>
-  	</dependency>
-	  
+  
   </dependencies>
-
+  
 </project>
